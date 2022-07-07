@@ -1,0 +1,3 @@
+# ARAD
+
+./run.sh
