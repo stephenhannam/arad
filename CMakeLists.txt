@@ -22,3 +22,5 @@ message(STATUS "USE_CUDA: ${USE_CUDA}")
 if(USE_CUDA)
     add_definitions(-DUSE_CUDA)
 endif()
+
+add_subdirectory(test)
