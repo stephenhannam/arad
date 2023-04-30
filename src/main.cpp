@@ -4,9 +4,6 @@
 #include "gpu.h"
 #endif
 
-#include "./ports/InputPort.h"
-#include "./ports/OutputPort.h"
-
 int main()
 {
     std::cout << "Hello, world!" << std::endl;
