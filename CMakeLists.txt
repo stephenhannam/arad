@@ -3,24 +3,22 @@ message(STATUS "CMake version: ${CMAKE_VERSION}")
 
 project(ARAD)
 
+# Location of compiler on VM
 set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
 
-option(USE_CUDA "Use CUDA" ON)
 
+# Add list of CPU source files (cpp and h files)
 file(GLOB cpu_source_files 
 	"${CMAKE_SOURCE_DIR}/src/*.cpp"
-	"${CMAKE_SOURCE_DIR}/src/ports/*.h"
+	"${CMAKE_SOURCE_DIR}/src/*.h"
 )
 
-file(GLOB gpu_source_files "${CMAKE_SOURCE_DIR}/src/*.cu")
+# Add list of GPU source files (cu files)
+file(GLOB gpu_source_files 
+	"${CMAKE_SOURCE_DIR}/src/*.cu"
+)
 
-# Modern CMake
+# Build executable
 enable_language("CUDA")
 add_executable(ARAD ${cpu_source_files} ${gpu_source_files})
-
-message(STATUS "USE_CUDA: ${USE_CUDA}")
-if(USE_CUDA)
-    add_definitions(-DUSE_CUDA)
-endif()
-
-add_subdirectory(test)
+add_definitions(-DUSE_CUDA)
