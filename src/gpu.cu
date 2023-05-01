@@ -24,9 +24,11 @@ void printCudaVersion()
  */
 __global__ void addArraysKernel(double *x, double *y, int numElements)
 {
-	for (int i = 0; i < numElements; i++)
+	const auto idx = blockIdx.x * blockDim.x + threadIdx.x;
+	
+	if(idx < numElements)
 	{
-		y[i] = x[i] + y[i];
+		y[idx] = x[idx] + y[idx];
 	}
 }
 
